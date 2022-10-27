@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://anandchowdhary.github.io/okrs/schema.json",
+  "title": "OKR",
+  "description": "Object and Key Results with progress",
+  "type": "object",
+  "properties": {
+    "year": {
+      "description": "Year",
+      "type": "integer",
+      "minimum": 2000,
+      "maximum": 3000
+    },
+    "quarter": {
+      "description": "Quarter",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4
+    },
+    "objectives": {
+      "description": "Objectives for this quarter",
+      "type": "array",
+      "items": {
+        "description": "Key results for this objective",
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "key_results": {
+            "description": "Metrics for this key result",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "target_result": { "type": "number" },
+                "current_result": { "type": "number" }
+              },
+              "additionalProperties": false,
+              "required": ["name", "target_result", "current_result"]
+            },
+            "minItems": 2,
+            "maxItems": 5,
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false,
+        "required": ["name", "key_results"]
+      },
+      "minItems": 1,
+      "maxItems": 5,
+      "uniqueItems": true
+    }
+  },
+  "required": ["year", "quarter", "objectives"]
+}
